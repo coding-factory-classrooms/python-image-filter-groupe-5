@@ -1,18 +1,23 @@
-import cv2
-import numpy as np
+import os
+import BlackAndWhite
+import GaussianBlur
+import Dilate
 
-# Story1
-img = cv2.imread("imgs/Logo_Tirna.jpg")
-img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-cv2.imwrite("outpout/Logo_Tirna_Gray.jpg", img)
+enter = "imgs/"
+leave = "output/"
 
-# Story 2
-img = cv2.imread("imgs/Logo_Tirna.jpg")
-img = cv2.blur(img, (5, 5))
-cv2.imwrite("outpout/Logo_Tirna_Blur.jpg", img)
+if not os.path.exists(leave):
+    os.mkdir(leave)
 
-# Story 3
-img = cv2.imread("imgs/Logo_Tirna.jpg")
-kernel = np.ones((5, 5), np.uint8)
-img = cv2.dilate(img, kernel, iterations=1)
-cv2.imwrite("outpout/Logo_Tirna_Dilate.jpg", img)
+with os.scandir(enter) as entries:
+    if os.path.exists("imgs"):
+        for entry in entries:
+            if not entry.name.endswith((".jpg", ".png")):
+                print(f"Le fichier n'est pas en bon format : {entry.name.split('.')[1]}")
+            print(entry.name)
+            BlackAndWhite.TransformNetB()
+            GaussianBlur.TransformBlur()
+            Dilate.TransformDilate()
+    else:
+        print("Le dossier n'existe pas")
+
