@@ -5,6 +5,7 @@ import cv2
 import BlackAndWhite
 import GaussianBlur
 import Dilate
+import ZeTeam
 
 import logger as log
 
@@ -116,6 +117,13 @@ def args_fonction():
                                 print(f"Filtre Dilate Appliqué = {entry.name}")
                                 log.log(f"Filtre Dilate Appliqué = {entry.name}")
                             # Sinon on lui dit que le filtre n'est pas valide en lui mettant ce qu'il a entrée
+                        # Si la liste commence par zeTeam alors
+                        elif a.startswith("zeTeam"):
+                            # On applique le filtre zeTeam sur tout les photos,
+                            img = ZeTeam.TransformZeTeam(img)
+                            # On lui dit que c'est fait
+                            print(f"Filtre ZeTeam Appliqué = {entry.name}")
+                            log.log(f"Filtre ZeTeam Appliqué = {entry.name}")
                         else:
                             log.log("Le nom du filtre est invalide")
                             print("filtre non valide")
