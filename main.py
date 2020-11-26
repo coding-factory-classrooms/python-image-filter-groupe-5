@@ -44,46 +44,53 @@ def args_fonction():
                     filters_args = args[6]
                     print("--filters, vous avez choisi un filtre")
                     # Story 7
-
-                    # Split si après filters_args (blur, grayscale, dilate) il y a une | alors,
-                    # c'est qu'il y a un autre argument derrière
-
                     # Split si après filters_args (blur, dilate) il y a : alors il y a une valeur derrière à récupérer
-
                     # Les splits sont stockés dans une variable
-
                     # Boucle sur la variable des splits
 
-                    # 2 lignes à ajouter
                     # Si dans le chemin d'accès le dossier entrer dans leave n'existe pas
                     if not os.path.exists(leave):
                         # Alors on le crée
                         os.mkdir(leave)
-                    # Si dans filters_agrs donc l'argument il y marqué
-                    # grayscale alors
-                    if filters_args == 'grayscale':
-                        # On applique le filtre n&b sur tout les photos
-                        img = BlackAndWhite.TransformNetB(img)
-                        # On lui dit que c'est fait
-                        print(f"Filtre Grayscale Appliqué = {entry.name}")
-                    # blur alors
-                    elif filters_args == 'blur':
-                        # On applique le filtre blur sur tout les photos
-                        img = GaussianBlur.TransformBlur(img)
-                        # On lui dit que c'est fait
-                        print(f"Filtre Blur Appliqué = {entry.name}")
-                    # dilate alors
-                    elif filters_args == 'dilate':
-                        # On applique le filtre dilate sur tout les photos
-                        img = Dilate.TransformDilate(img)
-                        # On lui dit que c'est fait
-                        print(f"Filtre Dilate Appliqué = {entry.name}")
-                    # Sinon on lui dit que le filtre n'est pas valide en lui mettant ce qu'il a entrée
-                    else:
-                        print("filtre non valide")
-                    print(f"FILTERS={filters_args}")
-                    # On applique les filtres et on crée les fichiers si pas ou modifie
-                    cv2.imwrite(f"{leave}/{entry.name}", img)
+
+                    # Ca supprimer toutes les barres au sein de la chaine de caractères et envoie les mots sous
+                    # forme de liste
+                    strBarre = filters_args.split("|")
+
+                    # On boucle sur la liste renvoyé sans les barres
+                    for a in strBarre:
+                        # Si la liste commence par blur alors
+                        if a.startswith("blur"):
+                            # Si il y a deux points dans la variable a alors
+                            if ":" in a:
+                                # Alors on split pour récupérer la valeur d'après les deux points
+                                value = a.split(":")[1]
+                                # On applique le filtre blur sur tout les photos, on lui met la valeur donné par l'user
+                                img = GaussianBlur.TransformBlur(img, int(value))
+                                # On lui dit que c'est fait
+                                print(f"Filtre Blur Appliqué = {entry.name}")
+                        # Si la liste commence par grayscale alors
+                        elif a.startswith("grayscale"):
+                            # On applique le filtre n&b sur tout les photos
+                            img = BlackAndWhite.TransformNetB(img)
+                            # On lui dit que c'est fait
+                            print(f"Filtre Grayscale Appliqué = {entry.name}")
+                        # Si la liste commence par dilate alors
+                        elif a.startswith("dilate"):
+                            # Si il y a deux points dans la variable a alors
+                            if ":" in a:
+                                # Alors on split pour récupérer la valeur d'après les deux points
+                                value = a.split(":")[1]
+                                # On applique le filtre dilate sur tout les photos,on lui met la valeur donné par l'user
+                                img = Dilate.TransformDilate(img, int(value))
+                                # On lui dit que c'est fait
+                                print(f"Filtre Dilate Appliqué = {entry.name}")
+                            # Sinon on lui dit que le filtre n'est pas valide en lui mettant ce qu'il a entrée
+                        else:
+                            print("filtre non valide")
+                        print(f"FILTERS={filters_args}")
+                        # On applique les filtres et on crée les fichiers si pas ou modifie
+                        cv2.imwrite(f"{leave}/{entry.name}", img)
         # Sinon
         else:
             # On lui dit que le dossier d'entrée n'existe pas et on le crée

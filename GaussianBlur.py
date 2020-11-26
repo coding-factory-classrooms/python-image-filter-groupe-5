@@ -1,10 +1,9 @@
 import cv2
 
 
-# Fonction qui permet de flouter l'image
-def TransformBlur(img):
-    # On défini un flou à 9 (Toujours Impair jamais pair sinon erreur)
-    flou = 9
+# Fonction qui permet de flouter l'image avec en paramètre l'image a modifié et la valeur du flou voulu
+def TransformBlur(img, flou):
+    # On défini un flou (Toujours Impair jamais pair sinon erreur)
     # On le modulo par deux pour avoir son reste décimal qui nous servira pour gérer les erreurs de s'il a mit entrée
     # un chiffre pair ou impair
     result = flou % 2
