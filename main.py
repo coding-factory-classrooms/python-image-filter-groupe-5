@@ -8,6 +8,8 @@ import Dilate
 
 import logger as log
 
+import listFilters as list
+
 import sys
 
 
@@ -48,6 +50,8 @@ def args_fonction():
                     print(f"Afficher les logs : --config-file (1er argument)")
                     print(f"Fichier de configuration : --config-file image.ini (1er argument)")
                     print(f"Liste des filtres disponible --list-filters (1er argument)")
+                elif args[1] == "--list-filters":
+                    list.affichage()
                 # Si le premier argument est "--config-file" alors on lui affiche les logs
                 elif args[1] == "--config-file":
                     log.dump_log()
