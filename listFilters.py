@@ -4,6 +4,9 @@ list = ["grayscale", "blur", "dilate", "blur:[number]", "dilate:[number]", "gray
 
 
 def affichage():
+    """
+    Affichage de liste des filtres disponibles
+    """
     for a in list:
         print(f"List des filtres disponibles")
         print(a)

@@ -3,6 +3,12 @@ import cv2
 
 # Fonction qui permet de flouter l'image avec en paramètre l'image a modifié et la valeur du flou voulu
 def TransformBlur(img, flou):
+    """
+    Permet de flouter plusieurs images
+    :param img: dossier de l'image que l'on doit transformer
+    :param flou: valeur défini par l'utilisateur, selon le floutage en nombre qu'il souhaite
+    :return: le filtre blur (flou) appliqué sur l'image
+    """
     # On défini un flou (Toujours Impair jamais pair sinon erreur)
     # On le modulo par deux pour avoir son reste décimal qui nous servira pour gérer les erreurs de s'il a mit entrée
     # un chiffre pair ou impair

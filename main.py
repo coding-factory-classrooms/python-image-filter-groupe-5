@@ -15,6 +15,13 @@ import sys
 
 # Fonction du Programme
 def args_fonction():
+    """
+    Permet de faire tourner le logiciel, condition pour les filtres selon ce qui est entrée en ligne de commandes,
+    Vérification des dossiers si ils existes ou pas, vérification du .png ou .jpg pour les photos à transformer,
+    Gestion de tout les erreurs possibles, récupération des arguments, variable crée pour évite le code en dur,
+    Adaptable si changement de valeur,
+    Implémentation des logs, affiche du menu et des logs
+    """
     # On récupère les arguments
     args = sys.argv
     # Variable qui stocke le dossier où se trouve les images à modifier
