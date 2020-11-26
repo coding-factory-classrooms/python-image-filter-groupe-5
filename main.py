@@ -48,6 +48,7 @@ def args_fonction():
                     print(f"Afficher les logs : --config-file (1er argument)")
                     print(f"Fichier de configuration : --config-file image.ini (1er argument)")
                     print(f"Liste des filtres disponible --list-filters (1er argument)")
+                # Si le premier argument est "--config-file" alors on lui affiche les logs
                 elif args[1] == "--config-file":
                     log.dump_log()
                     log.log("On affiche les logs en console")

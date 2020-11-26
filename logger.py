@@ -3,11 +3,10 @@ import sys
 
 args = sys.argv
 
-print(f"args={args}")
-
 log_file = "image.log"
 
 
+# Enregistre les logs dans le fichier avec la date et l'heure
 def log(Message):
     f"""
     Enregistrer un message dans un fichier log {log_file} et affiche le message en console
@@ -20,6 +19,7 @@ def log(Message):
         f.write(str(formatted + "\n"))
 
 
+# Lis le fichier
 def dump_log():
     try:
         with open(log_file, "r") as f:
