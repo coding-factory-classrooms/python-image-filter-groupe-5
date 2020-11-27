@@ -12,7 +12,10 @@ def TransformDilate(img, dilate):
     """
     # Ce qui permet de dilater une image
     kernel = np.ones((5, 5), np.uint8)
-    # iterations c'est si on veut qu'elle soit beaucoup dilater ou non
-    img = cv2.dilate(img, kernel, iterations=dilate)
+    try:
+        # iterations c'est si on veut qu'elle soit beaucoup dilater ou non
+        img = cv2.dilate(img, kernel, iterations=dilate)
+    except cv2.error as e:
+        print(e)
     # On retourne le filtre
     return img

@@ -15,6 +15,7 @@ def log(Message):
     now = datetime.now()
     timetamp = now.strftime('%Y/%m/%d %H:%M:%S')
     formatted = f'{timetamp} - {Message}'
+    print(formatted)
     with open(log_file, "a") as f:
         f.write(str(formatted + "\n"))
 

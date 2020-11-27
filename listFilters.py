@@ -1,15 +1,15 @@
-# Version du pauvre (Pour le moment)
+import os
 
-list = ["grayscale", "blur", "dilate", "blur:[number]", "dilate:[number]", "grayscale|blur:[number]|dilate:[number]"]
+from numpy.core.defchararray import lower
 
 
 def affichage():
     """
     Affichage de liste des filtres disponibles
     """
-    for a in list:
-        print(f"List des filtres disponibles")
-        print(a)
-
-
-affichage()
+    print(f"List des filtres disponibles (Tout en minuscules)")
+    with os.scandir("filters") as entries:
+        for entry in entries:
+            var = entry.name.split(".py")
+            for a in var:
+                print(lower(a))
